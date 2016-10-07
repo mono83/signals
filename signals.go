@@ -94,7 +94,7 @@ func (s *signals) On(sig os.Signal, target func()) {
 	defer s.m.Unlock()
 
 	s.handlers[sig] = append(s.handlers[sig], target)
-	s.log.Debug("Registered handler (:count total) for :name", wd.NameParam(sig.String()), wd.CountParam(len(s.handlers)))
+	s.log.Debug("Registered handler (:count total) for :name", wd.NameParam(sig.String()), wd.CountParam(len(s.handlers[sig])))
 }
 
 func (s *signals) Emit(sig os.Signal) {
